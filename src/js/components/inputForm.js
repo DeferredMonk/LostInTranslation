@@ -10,23 +10,27 @@ const InputForm = ({ setLoggedUser, data, loggedUser }) => {
     formState: { errors },
   } = useForm();
 
+  const localStorageUser = window.localStorage.getItem("username");
+
   const onSubmit = (inputData) => {
-    const userNameInUse = data.filter(
+    const userNameAlreadyInUse = data.filter(
       (user) => user.username.toLowerCase() === inputData.username.toLowerCase()
     );
-    if (userNameInUse.length === 0) {
+    if (userNameAlreadyInUse.length === 0) {
       //postData(inputData);
       console.log("post");
     }
     setLoggedUser(inputData.username);
+    localStorage.setItem("username", inputData.username);
   };
-  console.log(loggedUser);
+  console.log(localStorageUser, "toimii");
+
   //Error handlers
   //if (errors.message !== "") console.log("test");
 
   return (
     <div className="inputForm">
-      {loggedUser ? (
+      {loggedUser || localStorageUser ? (
         <form className="logged" onSubmit={handleSubmit(onSubmit)}>
           <div className="inputContainer">
             <input
@@ -36,7 +40,9 @@ const InputForm = ({ setLoggedUser, data, loggedUser }) => {
                 required: "What would you like to translate?",
               })}
             />
-            <button type="submit" className="translateButton">Translate</button>
+            <button type="submit" className="translateButton">
+              Translate
+            </button>
           </div>
         </form>
       ) : (
@@ -45,6 +51,7 @@ const InputForm = ({ setLoggedUser, data, loggedUser }) => {
             <input
               autoComplete="off"
               className="inputElem"
+              placeholder="Enter your name..."
               {...register("username", {
                 required: "Please input your username!",
               })}
