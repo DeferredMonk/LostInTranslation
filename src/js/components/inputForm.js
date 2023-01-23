@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
-import { patchData, postData } from "../api/data";
+import { patchData, postData, fetchUser } from "../api/data";
 import "../../sass/inputForm.sass";
 
-const InputForm = ({ setLoggedUser, data, loggedUser }) => {
+const InputForm = ({ data, setLoggedUser, loggedUser }) => {
   const {
     register,
     handleSubmit,
@@ -11,38 +11,32 @@ const InputForm = ({ setLoggedUser, data, loggedUser }) => {
     resetField,
   } = useForm();
 
-  const localStorageUser = window.localStorage.getItem("username");
-  const [translations, setTranslations] = useState([]);
-
   const userExists = (existingUsers, newUser) =>
-    existingUsers.filter(
+    existingUsers.find(
       (user) => user.username.toLowerCase() === newUser.username.toLowerCase()
     );
 
-  const onLogIn = (inputData) => {
+  const onLogIn = async (inputData) => {
     //Log in handler
-
-    if (userExists(data, inputData).length === 0) {
-      //postData(inputData);
-      console.log("post");
+    if (!userExists(data, inputData)) {
+      const newwUser = {username: inputData.username, translations:[]}
+      postData(newwUser);
     }
-    setLoggedUser(inputData.username);
-    localStorage.setItem("username", inputData.username);
+    setLoggedUser(await fetchUser(inputData.username));
     resetField("username");
-  };
+  }
 
   const onTranslate = (inputData) => {
-    //inputData.username = localStorageUser;
-    
-    patchData(1, inputData.translation);
-  };
+    const newList = loggedUser.translations
+    patchData(loggedUser.id, [...newList, inputData.translation]);
+  }
 
   //Error handlers
   //if (errors.message !== "") console.log("test");
 
   return (
     <div className="inputForm">
-      {loggedUser || localStorageUser ? (
+      {loggedUser ? (
         <form className="logged" onSubmit={handleSubmit(onTranslate)}>
           <div className="inputContainer">
             <input

@@ -7,6 +7,19 @@ const fetchData = async () => {
   const result = await response.json();
   return result;
 };
+
+/**
+ * Mitä tämä tekee?
+ * @param {String} userName Mikä tämä on?
+ * @returns {Object} Palauttaa kirjautuneen käyttäjän
+ */
+const fetchUser = async (userName) => {
+  let response = await fetch(`${process.env.REACT_APP_API_URL}/translations`)
+  let result = await response.json()
+  result = result.find(user => user.username==userName)
+  return result;
+}
+
 const postData = async (toPost) => {
   fetch(`${process.env.REACT_APP_API_URL}/translations`, {
     method: "POST",
@@ -29,7 +42,6 @@ const postData = async (toPost) => {
 };
 
 const patchData = (userId, toPatch) => {
-  console.log(toPatch, userId);
   fetch(`${process.env.REACT_APP_API_URL}/translations/${userId}`, {
     method: "PATCH", // NB: Set method to PATCH
     headers: {
@@ -53,4 +65,4 @@ const patchData = (userId, toPatch) => {
     .catch((error) => {});
 };
 
-export { fetchData, postData, patchData };
+export { fetchData, fetchUser, postData, patchData };

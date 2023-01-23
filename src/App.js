@@ -10,8 +10,7 @@ import { BrowserRouter, Router, Route } from "react-router-dom";
 
 const App = () => {
   const [data, setData] = useState("");
-  const user = window.localStorage.getItem("user");
-  const [loggedUser, setLoggedUser] = useState();
+  const [loggedUser, setLoggedUser] = useState(null);
 
   useEffect(() => {
     const getData = async () => {
@@ -20,6 +19,7 @@ const App = () => {
     };
     getData();
   }, []);
+
 
   return (
     <BrowserRouter>
