@@ -1,0 +1,60 @@
+@import "./utils.sass"
+
+@keyframes dragUp
+  0%
+    opacity: 100
+    transform: translateY(0px)
+  100%
+    opacity: 0
+    transform: translateY(-20px)
+
+.frontPageHeader
+    position: absolute
+    display: flex
+    justify-content: space-evenly
+    align-items: center
+    height: 60vh
+    width: 100%
+    @include medium-only
+        flex-direction: column-reverse
+        justify-content: space-around
+        height: 100vh
+    @include small-down
+        flex-direction: column-reverse
+        justify-content: space-around
+        height: 100vh
+imgLogo
+    transition-timing-function: ease-in-out
+    transition: margin 0.2s
+    max-width: 65%
+    animation: 0.2s dragUp
+    @include medium-only
+        width: 50%
+        
+.title
+    font-family: 'Love Ya Like A Sister', cursive
+    font-size: 100px
+    color: white
+    max-width: 500px
+    padding: 150px
+    @include medium-only
+        font-size: 80px
+        text-align: center
+        padding: 0px
+    @include small-down
+        padding: 0px
+        font-size: 60px
+        text-align: center
+
+.smallIn
+    font-size:70px
+    @include medium-only
+        font-size: 50px
+
+.hidden
+    opacity: 0
+    animation: 0.5s dragUp
+    
+    
+    
+    

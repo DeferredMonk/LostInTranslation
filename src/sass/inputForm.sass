@@ -5,7 +5,6 @@ $default-form-heitgh: 77px
 $default-border-r: 15px
 
 @keyframes errorHandler
-//for error animation
   0%
     transform: translate(5px)
   25%
@@ -18,7 +17,6 @@ $default-border-r: 15px
     transform: translate(5px)
 
 @keyframes dropDown
-//dropdown animation
   0%
     opacity: 0
     transform: translateY(-10px)
@@ -30,13 +28,19 @@ $default-border-r: 15px
     width: 100%
     display: flex
     justify-content: center
+    position: relative
 form
     width: 50%
-    margin-top: 45vh  
+    margin-top: 60vh  
     transition-timing-function: ease-in-out  
     transition: margin 1s 
     @include small-down
+      margin-top: 45vh
       width: 75%
+    @include medium-only
+      margin-top: 45vh
+    
+
 
 .inputElem 
   border-radius: $default-border-r
