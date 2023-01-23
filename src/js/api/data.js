@@ -27,4 +27,30 @@ const postData = async (toPost) => {
     })
     .catch((error) => console.log(error));
 };
-export { fetchData, postData };
+
+const patchData = (userId, toPatch) => {
+  console.log(toPatch, userId);
+  fetch(`${process.env.REACT_APP_API_URL}/translations/${userId}`, {
+    method: "PATCH", // NB: Set method to PATCH
+    headers: {
+      "X-API-Key": process.env.REACT_APP_API_KEY,
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      // Provide new translations to add to user with id 1
+      translations: toPatch
+    }),
+  })
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error("Could not update translations history");
+      }
+      return response.json();
+    })
+    .then((updatedUser) => {
+      console.log(updatedUser);
+    })
+    .catch((error) => {});
+};
+
+export { fetchData, postData, patchData };

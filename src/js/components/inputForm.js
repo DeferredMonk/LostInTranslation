@@ -1,6 +1,6 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
-import { postData } from "../api/data";
+import { patchData, postData } from "../api/data";
 import "../../sass/inputForm.sass";
 
 const InputForm = ({ setLoggedUser, data, loggedUser }) => {
@@ -12,13 +12,17 @@ const InputForm = ({ setLoggedUser, data, loggedUser }) => {
   } = useForm();
 
   const localStorageUser = window.localStorage.getItem("username");
+  const [translations, setTranslations] = useState([]);
+
+  const userExists = (existingUsers, newUser) =>
+    existingUsers.filter(
+      (user) => user.username.toLowerCase() === newUser.username.toLowerCase()
+    );
 
   const onLogIn = (inputData) => {
     //Log in handler
-    const userNameAlreadyInUse = data.filter(
-      (user) => user.username.toLowerCase() === inputData.username.toLowerCase()
-    );
-    if (userNameAlreadyInUse.length === 0) {
+
+    if (userExists(data, inputData).length === 0) {
       //postData(inputData);
       console.log("post");
     }
@@ -28,8 +32,9 @@ const InputForm = ({ setLoggedUser, data, loggedUser }) => {
   };
 
   const onTranslate = (inputData) => {
-    inputData.username = localStorageUser;
-    console.log("translated", inputData);
+    //inputData.username = localStorageUser;
+    
+    patchData(1, inputData.translation);
   };
 
   //Error handlers
