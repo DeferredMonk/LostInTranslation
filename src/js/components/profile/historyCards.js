@@ -1,5 +1,14 @@
-const HistoryCards = () => {
-    return <div className="historyCards"></div>
-}
+const HistoryCards = ({loggedUser}) => {
 
-export default HistoryCards
+  return (
+    <div className="historyCards">
+        {loggedUser &&
+      <dl>{loggedUser.translations.map( (translation, index) => {
+        return <dt key={index}>{translation}</dt>
+
+      })}</dl>}
+    </div>
+  );
+};
+
+export default HistoryCards;

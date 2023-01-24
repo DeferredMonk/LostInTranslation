@@ -29,6 +29,10 @@ const App = () => {
           setLoggedUser={setLoggedUser}
           loggedUser={loggedUser}
         />
+        <Profile 
+          setLoggedUser={setLoggedUser}
+          loggedUser={loggedUser}
+        />
       </div>
     </BrowserRouter>
   );
