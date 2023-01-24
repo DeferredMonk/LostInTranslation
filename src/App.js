@@ -20,10 +20,10 @@ const App = () => {
     getData();
   }, []);
 
-
   return (
     <BrowserRouter>
       <div className="App">
+        <FrontPageHeader loggedUser={loggedUser} />
         <InputForm
           data={data}
           setLoggedUser={setLoggedUser}

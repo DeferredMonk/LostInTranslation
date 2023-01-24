@@ -4,16 +4,43 @@
 $default-form-heitgh: 77px
 $default-border-r: 15px
 
+@keyframes errorHandler
+  0%
+    transform: translate(5px)
+  25%
+    transform: translate(-5px)
+  50%
+    transform: translate(5px)
+  75%
+    transform: translate(-5px)
+  100%
+    transform: translate(5px)
+
+@keyframes dropDown
+  0%
+    opacity: 0
+    transform: translateY(-10px)
+  100%
+    opacity: 100
+    transform: translateY(0px)
+
 .inputForm
     width: 100%
     display: flex
     justify-content: center
+    position: relative
 form
     width: 50%
-    margin-top: 45vh    
-    transition: margin 1s
+    margin-top: 60vh  
+    transition-timing-function: ease-in-out  
+    transition: margin 1s 
     @include small-down
+      margin-top: 50vh
       width: 75%
+    @include medium-only
+      margin-top: 45vh
+    
+
 
 .inputElem 
   border-radius: $default-border-r
@@ -39,10 +66,8 @@ input:focus
   display: flex
   background: white
   border-radius: $default-border-r
-  transition: box-shadow 0.3s, margin 1s  
+  transition: box-shadow 0.3s, margin 1s, transform 0.2s 
   
-
-
 .inputContainer:focus-within
    box-shadow: 0px 0px 10px 3px rgba(255, 255, 255, 1)
 
@@ -68,7 +93,17 @@ button
     
   
 button:hover
-    background: purple
+  background: purple
 
+.errorMsg
+  color: #ff70a6
+  text-align: center
+  font-size: large
+  margin-top: 5px
+  animation: 0.2s dropDown
+
+.error
+  box-shadow: 0px 0px 10px 3px #ff70a6 !important
+  animation: 0.2s errorHandler
 
 
