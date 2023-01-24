@@ -7,9 +7,9 @@ const InputForm = ({ data, setLoggedUser, loggedUser }) => {
   const {
     register,
     handleSubmit,
-    formState: { errors },
+    formState: { errors, isValid },
     resetField,
-  } = useForm();
+  } = useForm({ mode: "onChange" });
 
   const userExists = (existingUsers, newUser) =>
     existingUsers.find(
@@ -19,26 +19,30 @@ const InputForm = ({ data, setLoggedUser, loggedUser }) => {
   const onLogIn = async (inputData) => {
     //Log in handler
     if (!userExists(data, inputData)) {
-      const newwUser = {username: inputData.username, translations:[]}
+      const newwUser = { username: inputData.username, translations: [] };
       postData(newwUser);
     }
     setLoggedUser(await fetchUser(inputData.username));
     resetField("username");
-  }
+  };
 
   const onTranslate = (inputData) => {
-    const newList = loggedUser.translations
+    const newList = loggedUser.translations;
     patchData(loggedUser.id, [...newList, inputData.translation]);
-  }
+  };
 
   //Error handlers
-  //if (errors.message !== "") console.log("test");
+  if (!isValid) console.log(errors.required);
 
   return (
     <div className="inputForm">
       {loggedUser ? (
         <form className="logged" onSubmit={handleSubmit(onTranslate)}>
-          <div className="inputContainer">
+          <div
+            className={
+              !errors.translation ? "inputContainer" : "inputContainer error"
+            }
+          >
             <input
               className="inputElem"
               placeholder="Translate..."
@@ -50,12 +54,20 @@ const InputForm = ({ data, setLoggedUser, loggedUser }) => {
               Translate
             </button>
           </div>
+          {errors.translation && (
+            <div className="errorMsg">{errors.translation.message}</div>
+          )}
         </form>
       ) : (
         <form onSubmit={handleSubmit(onLogIn)}>
-          <div className="inputContainer">
+          <div
+            className={
+              !errors.username ? "inputContainer" : "inputContainer error"
+            }
+          >
             <input
               className="inputElem"
+              autoComplete="off"
               placeholder="Enter your name..."
               {...register("username", {
                 required: "Please input your username!",
@@ -63,6 +75,9 @@ const InputForm = ({ data, setLoggedUser, loggedUser }) => {
             />
             <button type="submit">Sign in</button>
           </div>
+          {errors.username && (
+            <div className="errorMsg">{errors.username.message}</div>
+          )}
         </form>
       )}
     </div>
