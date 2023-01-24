@@ -23,38 +23,34 @@
         flex-direction: column-reverse
         justify-content: space-around
         height: 100vh
-imgLogo
+.imgLogo
     transition-timing-function: ease-in-out
     transition: margin 0.2s
     max-width: 65%
-    animation: 0.2s dragUp
     @include medium-only
         width: 50%
-        
-.title
-    font-family: 'Love Ya Like A Sister', cursive
-    font-size: 100px
-    color: white
-    max-width: 500px
-    padding: 150px
-    @include medium-only
-        font-size: 80px
-        text-align: center
-        padding: 0px
-    @include small-down
-        padding: 0px
-        font-size: 60px
-        text-align: center
-
+           
 .smallIn
-    font-size:70px
+    font-size:40px
     @include medium-only
-        font-size: 50px
+        font-size:20px
+    @include small-down
+        font-size: 35px
 
 .hidden
     opacity: 0
     animation: 0.5s dragUp
     
-    
+.titleAndDescContainer
+    font-family: 'Love Ya Like A Sister', cursive
+    font-size: 50px
+    color: white
+    max-width: 500px
+    @include medium-only
+        font-size: 30px
+        text-align: center
+    @include small-down
+        font-size: 30px
+        text-align: center
     
     
