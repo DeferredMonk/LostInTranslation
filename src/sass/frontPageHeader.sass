@@ -1,12 +1,15 @@
 @import "./utils.sass"
 
 @keyframes dragUp
-  0%
+  from
     opacity: 100
     transform: translateY(0px)
-  100%
+  to
     opacity: 0
     transform: translateY(-20px)
+
+.doNotDisplay
+    display: none
 
 .frontPageHeader
     position: absolute
