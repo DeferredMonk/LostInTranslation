@@ -1,12 +1,15 @@
 @import "./utils.sass"
 
 @keyframes dragUp
-  0%
+  from
     opacity: 100
     transform: translateY(0px)
-  100%
+  to
     opacity: 0
     transform: translateY(-20px)
+
+.doNotDisplay
+    display: none
 
 .frontPageHeader
     position: absolute
@@ -27,6 +30,7 @@
     transition-timing-function: ease-in-out
     transition: margin 0.2s
     max-width: 65%
+    pointer-events: none
     @include medium-only
         width: 50%
            
