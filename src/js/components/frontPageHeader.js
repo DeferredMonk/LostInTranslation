@@ -6,6 +6,7 @@ const localStorage = !window.localStorage.getItem("user");
 
 const FrontPageHeader = () => {
   const { username } = useSelector((state) => state.user);
+
   return (
     <div
       className={
