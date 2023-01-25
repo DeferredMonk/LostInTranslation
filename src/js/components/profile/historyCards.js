@@ -1,5 +1,6 @@
 import "../../../sass/historyCards.sass";
 import logo from "../../../Assets/Logo.png";
+import { useState } from "react";
 
 const HistoryCards = ({ loggedUser }) => {
   const filteredTranslations =
@@ -11,13 +12,15 @@ const HistoryCards = ({ loggedUser }) => {
   return (
     <>
       {loggedUser && (
-        <div className="historyCardsContainer">
+        <div className="popUp historyCardsContainer flex flexColumn ">
           {filteredTranslations.map((translation, index) => {
-            //console.log(translation)
             return (
-              <div className="historyCard" key={index}>
-                <img src={logo} className="historyCardLogo" />
+              <div
+                className={"historyCard flex centerItems borderAndShadow "}
+                key={index}
+              >
                 <div className="translation">{translation}</div>
+                <img src={logo} className="historyCardLogo" alt="logo" />
               </div>
             );
           })}

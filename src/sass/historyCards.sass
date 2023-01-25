@@ -1,41 +1,84 @@
 @import "./utils.sass"
 
+$shadow: 0px 0px 10px 3px #ff70a6
+$bgC: #480348
+
+@keyframes popUp
+    0% 
+        display: none
+        opacity: 0
+
+    1% 
+        display: block
+        opacity: 0
+
+    100% 
+        display: block
+        opacity: 0.7
+
+.popUp
+    animation-name: popUp
+    animation-delay: 1s
+    animation-duration: 1s
+    animation-timing-function: ease-in
+    animation-fill-mode: forwards
+
+.fullWidth
+    max-width: 100%
+
+.centerItems
+    justify-content: center
+    align-items: center
+
+.flex
+    display: flex
+
+.flexColumn
+    flex-direction: column
+    align-items: center
+
+.borderAndShadow
+    border-radius: 10px
+    box-shadow: $shadow
+
 .historyCardsContainer
-    max-width: 500px
-    min-height: 100vh
+    opacity: 0
+    width: 500px
+    min-height: fit-content
+    font-family: 'Love Ya Like A Sister', cursive 
 
 .historyCard
-    max-width: 80%
-    background-color: #480348
-    opacity: 0.7
+    width: 80%
+    background-color: $bgC
     min-height: 50px
     margin: 20px
-    padding: 20px 0
-    justify-content: center
-    display: flex
-    align-items: center
-    box-shadow: 0px 0px 10px 3px #ff70a6
-    border-radius: 10px
-    color: white
-    font-family: 'Love Ya Like A Sister', cursive 
-    text-align: center
-
-    @include small-up
+    padding: 10px 0
+    position: relative
+    transform-style: preserve-3d
+    @include small-down
+        width: 60%
         font-size: 20px
-        height: 45px
-        width: 200px
-    
+        padding: 0
+    @include small-up
+        font-size: 25px
+        min-height: 45px
     @include large
-        height: 50px
+        min-height: 50px
         font-size: xx-large
 
 .historyCardLogo
     width: 50px
-    transform: rotate(-45deg) translate(-20px)
+    left: -30px
+    top: -25px
+    transform: translateZ(-10px) rotate(-45deg) 
     position: absolute
+    @include small-down
+        width: 40px
+        left: -25px
 
-.historyCardContainer
-    justify-content: center
-    align-items: center
-    display: flex
-    width: 100%
+.translation
+    word-wrap: break-word
+    color: white
+    text-align: center
+    
+     
