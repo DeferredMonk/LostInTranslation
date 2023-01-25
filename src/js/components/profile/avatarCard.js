@@ -8,24 +8,25 @@ const AvatarCard = ({ loggedUser }) => {
 
   return (
     <div className="avatarCard">
-      <div className="circleBase circle">
-        <span className="firstLetter">
-          {loggedUser && loggedUser.username[0]}
-        </span>
-      </div>
-      <div className="userInfoContainer">
-        <span className="infoText">Username:</span>
-        <span className="userProfileName">
-          {loggedUser && loggedUser.username}
-        </span>
-        <span className="infoText">
-          Translations count:{" "}
-          {loggedUser && loggedUser.translations.length}
-        </span>
+      <div className="profileContainer">
+        <div className="circleBase circle">
+          <span className="firstLetter">
+            {loggedUser && loggedUser.username[0]}
+          </span>
+        </div>
+        <div className="userInfoContainer">
+          <span className="infoText">Username:</span>
+          <span className="userProfileName">
+            {loggedUser && loggedUser.username}
+          </span>
+          <span className="infoText">
+            Translations count: {loggedUser && loggedUser.translations.length}
+          </span>
+        </div>
       </div>
       <div className="buttonContainer" onClick={clearHistory}>
-        <button>Clear Translations</button>
-        <button>Logout</button>
+        <button className="clearTranslationsButton">Clear Translations</button>
+        <button className="logoutButton">Logout</button>
       </div>
     </div>
   );

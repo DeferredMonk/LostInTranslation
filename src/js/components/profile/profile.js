@@ -12,10 +12,6 @@ const Profile = ({ setLoggedUSer, loggedUser }) => {
     <div className="profile">
       <AvatarCard loggedUser={loggedUser} />
       <HistoryCards loggedUser={loggedUser} />
-      <button onClick={clearHistory} className="individualButton">
-        Clear translations
-      </button>
-      <button className="individualButton">Logout</button>
     </div>
   );
 };
