@@ -1,29 +1,40 @@
 import "../../../sass/avatar.sass";
+import { clearData } from "../../reducers/userSlice";
+import { useDispatch, useSelector } from "react-redux";
+import { logout } from "../../reducers/userSlice";
 
-const AvatarCard = ({ loggedUser }) => {
-  const clearHistory = () => {};
+const AvatarCard = () => {
+  const dispatch = useDispatch();
+  const { username, translations, id } = useSelector((state) => state.user);
+
+  const clearHistory = () => {
+    dispatch(clearData(id));
+  };
 
   return (
     <div className="avatarCard">
       <div className="profileContainer">
         <div className="circleBase circle">
-          <span className="firstLetter">
-            {loggedUser && loggedUser.username[0]}
-          </span>
+          <span className="firstLetter">{username && username[0]}</span>
         </div>
         <div className="userInfoContainer">
           <span className="infoText">Username:</span>
-          <span className="userProfileName">
-            {loggedUser && loggedUser.username}
-          </span>
+          <span className="userProfileName">{username && username}</span>
           <span className="infoText">
-            Translations count: {loggedUser && loggedUser.translations.length}
+            Translations count: {username && translations.length}
           </span>
         </div>
       </div>
-      <div className="buttonContainer" onClick={clearHistory}>
-        <button className="clearTranslationsButton">Clear Translations</button>
-        <button className="logoutButton">Logout</button>
+      <div className="buttonContainer">
+        <button
+          className="clearTranslationsButton"
+          onClick={() => clearHistory()}
+        >
+          Clear Translations
+        </button>
+        <button className="logoutButton" onClick={() => dispatch(logout())}>
+          Logout
+        </button>
       </div>
     </div>
   );

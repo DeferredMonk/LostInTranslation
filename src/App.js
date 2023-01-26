@@ -23,7 +23,7 @@ const App = () => {
       <div className="App">
         <FrontPageHeader />
         <InputForm />
-        <TranslatedSign />
+        <Profile />
       </div>
     </BrowserRouter>
   );
