@@ -1,9 +1,9 @@
 import "../../sass/frontPageHeader.sass";
 import logo from "../../Assets/Logo-Hello.png";
 
-const FrontPageHeader = ({ loggedUser }) => {
+const FrontPageHeader = () => {
   return (
-    <div className={!loggedUser ? "frontPageHeader" : "frontPageHeader hidden"}>
+    <div className={!window.localStorage.getItem('user') ? "frontPageHeader" : "frontPageHeader hidden"}>
       <img src={logo} alt="hello logo" className="imgLogo" />
       <div className="titleAndDescContainer">
         <h1 className="title">

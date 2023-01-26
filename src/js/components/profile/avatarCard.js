@@ -1,10 +1,7 @@
 import "../../../sass/avatar.sass";
-import { patchData } from "../../api/data.js";
 
 const AvatarCard = ({ loggedUser }) => {
-  const clearHistory = () => {
-    patchData(loggedUser.id, []);
-  };
+  const clearHistory = () => {};
 
   return (
     <div className="avatarCard">
