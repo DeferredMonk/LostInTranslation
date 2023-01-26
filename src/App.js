@@ -8,6 +8,7 @@ import Profile from "./js/components/profile/profile.js";
 import { BrowserRouter, Router, Route } from "react-router-dom";
 import { fetchData } from "./js/reducers/userListSlice.js";
 import { fetchUser } from "./js/reducers/userSlice";
+import NavBar from "./js/components/NavBar";
 
 const App = () => {
   const dispatch = useDispatch();
@@ -21,6 +22,7 @@ const App = () => {
   return (
     <BrowserRouter>
       <div className="App">
+        <NavBar />
         <FrontPageHeader />
         <InputForm />
         <Profile />
