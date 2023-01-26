@@ -1,6 +1,5 @@
 import "../../../sass/historyCards.sass";
 import logo from "../../../Assets/Logo.png";
-import { useState } from "react";
 
 const HistoryCards = ({ loggedUser }) => {
   const filteredTranslations =
