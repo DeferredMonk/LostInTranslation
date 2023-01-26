@@ -2,19 +2,14 @@ import "../../sass/frontPageHeader.sass";
 import logo from "../../Assets/Logo-Hello.png";
 import { useSelector } from "react-redux";
 
-const localStorage = !window.localStorage.getItem("user");
-
 const FrontPageHeader = () => {
-  const { username } = useSelector((state) => state.user);
 
   return (
     <div
       className={
-        localStorage
-          ? !username
-            ? "frontPageHeader"
-            : "frontPageHeader hidden"
-          : "doNotDisplay"
+        window.localStorage.getItem("user")
+          ? "frontPageHeader hidden"
+          : "frontPageHeader"
       }
     >
       <img src={logo} alt="hello logo" className="imgLogo" />
