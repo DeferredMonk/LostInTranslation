@@ -1,9 +1,10 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from 'react-redux';
 import { useForm } from "react-hook-form";
-import { postData } from "../reducers/userListSlice.js";
-import { fetchUser, patchData } from "../reducers/userSlice.js";
-import "../../sass/inputForm.sass";
+import { postData } from "../../reducers/userListSlice.js";
+import { fetchUser, patchData } from "../../reducers/userSlice.js";
+import "../../../sass/inputForm.sass";
+import { translate, clearTranslation } from "../../reducers/translationSlice"
 
 const InputForm = () => {
   const {users} = useSelector(state => state.userList)
@@ -32,8 +33,9 @@ const InputForm = () => {
   };
 
   const onTranslate = (inputData) => {
-    const newList = {id: id, translations: [...translations, inputData.translation]};
+    const newList = {id: id, translations: [...translations, inputData.translation.replace(/[^a-zA-Z ]/g, "")]};
     dispatch(patchData(newList));
+    dispatch(translate(inputData.translation.replace(/[^a-zA-Z ]/g, "")))
   };
 
   //Error handlers

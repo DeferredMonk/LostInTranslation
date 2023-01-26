@@ -10,16 +10,18 @@ $bgC: #480348
 
     1% 
         display: block
+        transform: translateY(-10px)
         opacity: 0
 
     100% 
         display: block
+        transform: translateY(0)
         opacity: 0.7
 
 .popUp
     animation-name: popUp
     animation-delay: 1s
-    animation-duration: 1s
+    animation-duration: 0.7s
     animation-timing-function: ease-in
     animation-fill-mode: forwards
 
@@ -42,13 +44,14 @@ $bgC: #480348
     box-shadow: $shadow
 
 .historyCardsContainer
-    opacity: 0
+    
     width: 500px
     min-height: fit-content
     font-family: 'Love Ya Like A Sister', cursive 
     margin-top: 20px
 
 .historyCard
+    opacity: 0
     width: 80%
     background-color: $bgC
     min-height: 50px
