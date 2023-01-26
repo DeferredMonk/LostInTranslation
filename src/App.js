@@ -1,38 +1,29 @@
 import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import "./sass/app.sass";
-import { fetchData } from "./js/api/data.js";
-import NavBar from "./js/components/navBar.js";
 import FrontPageHeader from "./js/components/frontPageHeader.js";
 import TranslatedSign from "./js/components/translatedSign.js";
 import InputForm from "./js/components/inputForm.js";
 import Profile from "./js/components/profile/profile.js";
 import { BrowserRouter, Router, Route } from "react-router-dom";
+import { fetchData } from "./js/reducers/userListSlice.js";
+import { fetchUser } from "./js/reducers/userSlice";
 
 const App = () => {
-  const [data, setData] = useState("");
-  const [loggedUser, setLoggedUser] = useState(null);
+  const dispatch = useDispatch();
 
   useEffect(() => {
-    const getData = async () => {
-      const response = await fetchData();
-      setData(response);
-    };
-    getData();
+    dispatch(fetchData());
+    if (window.localStorage.getItem("user"))
+      dispatch(fetchUser(window.localStorage.getItem("user")));
   }, []);
 
   return (
     <BrowserRouter>
       <div className="App">
-        <FrontPageHeader loggedUser={loggedUser} />
-        <InputForm
-          data={data}
-          setLoggedUser={setLoggedUser}
-          loggedUser={loggedUser}
-        />
-        <Profile 
-          setLoggedUser={setLoggedUser}
-          loggedUser={loggedUser}
-        />
+        <FrontPageHeader />
+        <InputForm />
+        <Profile />
       </div>
     </BrowserRouter>
   );

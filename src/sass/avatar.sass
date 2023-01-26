@@ -1,5 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Love+Ya+Like+A+Sister&display=swap')
 $shadow: 0px 0px 10px 3px #ffffff
+@import "./utils.sass"
 
 .avatarCard
     display: flex
@@ -16,6 +17,9 @@ $shadow: 0px 0px 10px 3px #ffffff
     border-radius: 30px
     border-top-right-radius: 0
     border-bottom-right-radius: 0
+
+    @include medium-only
+        width: 400px
     
 .circleBase 
     border-radius: 50%
@@ -55,8 +59,9 @@ $shadow: 0px 0px 10px 3px #ffffff
     flex-direction: column
     color: white
     justify-content: space-between
-    /*box-shadow: $shadow*/
     border-top-right-radius: 30px
     border-bottom-right-radius: 30px
-    /*background-color: #af3c66*/
     padding-left: 5px
+    max-height: 155px
+    
+    

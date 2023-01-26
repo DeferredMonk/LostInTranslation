@@ -1,3 +1,5 @@
+@import "./utils.sass"
+    
 .profile
     display: flex
     align-items: center
@@ -12,7 +14,11 @@
     border-bottom-left-radius: 0
     border-bottom-right-radius: 0
     opacity: 0.7
-    
+
+    @include medium-only
+        font-size: 20px
+        height: 100%
+        margin-bottom: 2px
     
 .clearTranslationsButton:hover
     box-shadow: 0px 0px 9px 0px rgba(0,0,0,0.75)
@@ -24,6 +30,11 @@
     border-top-right-radius: 0
     border-bottom-left-radius: 0
     opacity: 0.7
-    
+
+    @include medium-only
+        font-size: 20px
+        height: 100%
+        margin-top: 2px
+        
 .logoutButton:hover
     box-shadow: 0px 0px 9px 0px rgba(0,0,0,0.75)

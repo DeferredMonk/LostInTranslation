@@ -1,42 +1,47 @@
 import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from 'react-redux';
 import { useForm } from "react-hook-form";
-import { patchData, postData, fetchUser } from "../api/data";
+import { postData } from "../reducers/userListSlice.js";
+import { fetchUser, patchData } from "../reducers/userSlice.js";
 import "../../sass/inputForm.sass";
 
-const InputForm = ({ data, setLoggedUser, loggedUser }) => {
+const InputForm = () => {
+  const {users} = useSelector(state => state.userList)
+  const {username, translations, id} = useSelector(state => state.user)
   const {
     register,
     handleSubmit,
     formState: { errors, isValid },
     resetField,
   } = useForm({ mode: "onChange" });
+  const dispatch = useDispatch()
 
   const userExists = (existingUsers, newUser) =>
     existingUsers.find(
-      (user) => user.username.toLowerCase() === newUser.username.toLowerCase()
+      (user) => user.toLowerCase() === newUser.username.toLowerCase()
     );
 
   const onLogIn = async (inputData) => {
     //Log in handler
-    if (!userExists(data, inputData)) {
+    if (!userExists(users, inputData)) {
       const newwUser = { username: inputData.username, translations: [] };
-      postData(newwUser);
+      await dispatch(postData(newwUser))
     }
-    setLoggedUser(await fetchUser(inputData.username));
+    await dispatch(fetchUser(inputData.username))
     resetField("username");
   };
 
   const onTranslate = (inputData) => {
-    const newList = loggedUser.translations;
-    patchData(loggedUser.id, [...newList, inputData.translation]);
+    const newList = {id: id, translations: [...translations, inputData.translation]};
+    dispatch(patchData(newList));
   };
 
   //Error handlers
-  if (!isValid) console.log(errors.required);
+  //if (!isValid) console.log(errors.required);
 
   return (
     <div className="inputForm">
-      {loggedUser ? (
+      {window.localStorage.getItem('user') ? (
         <form className="logged" onSubmit={handleSubmit(onTranslate)}>
           <div
             className={
