@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch, useSelector } from "react-redux";
 import "./sass/app.sass";
 import FrontPageHeader from "./js/components/frontPageHeader.js";
 import TranslatedSign from "./js/components/translations/translatedSign.js";
@@ -10,18 +10,18 @@ import { fetchData } from "./js/reducers/userListSlice.js";
 import { fetchUser } from "./js/reducers/userSlice";
 
 const App = () => {
-  const [loggedUser, setLoggedUser] = useState(null);
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(fetchData())
-    if (window.localStorage.getItem('user')) dispatch(fetchUser(window.localStorage.getItem('user')))
-  }, [])
+    dispatch(fetchData());
+    if (window.localStorage.getItem("user"))
+      dispatch(fetchUser(window.localStorage.getItem("user")));
+  }, []);
 
   return (
     <BrowserRouter>
       <div className="App">
-        <FrontPageHeader loggedUser={loggedUser} />
+        <FrontPageHeader />
         <InputForm />
         <TranslatedSign />
       </div>
