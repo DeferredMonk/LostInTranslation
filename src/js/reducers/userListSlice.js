@@ -1,5 +1,9 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 
+/**
+ * Gets all usrnames from API
+ * @returns {Array<String>}
+ */
 export const fetchData = createAsyncThunk(
   'userList/fetchData',
   async () => {
@@ -13,6 +17,10 @@ export const fetchData = createAsyncThunk(
   }
 )
 
+/**
+ * Creates new user into API
+ * @returns {String}
+ */
 export const postData = createAsyncThunk(
     'userList/postData',
     async (toPost) => {
@@ -34,6 +42,10 @@ export const postData = createAsyncThunk(
     }
 )
 
+/**
+ * This function creates userList reducer and actions for it.
+ * @returns {Object} users: Array<String>
+ */
 export const userListSlice = createSlice({
     name:'userList',
     initialState: {

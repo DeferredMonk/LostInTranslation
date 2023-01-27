@@ -9,6 +9,11 @@ import { fetchUser } from "./js/reducers/userSlice";
 import FrontPage from "./js/components/translations/frontPage";
 import NavBar from "./js/components/NavBar";
 
+/**
+ * Initializes a necessary initial information, connects Navbar, FrontPAgeHearder, 
+ * Profile and Frontpage -files and renders them into element.
+ * @returns {JSX.Element}
+ */
 const App = () => {
   const dispatch = useDispatch();
 

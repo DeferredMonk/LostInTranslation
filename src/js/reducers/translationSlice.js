@@ -1,5 +1,9 @@
 import { createSlice } from "@reduxjs/toolkit";
 
+/**
+ * This function creates translation reducer and actions for it.
+ * @returns {{translation: String}} translation: String
+ */
 export const translationSlice = createSlice({
     name: 'translation',
     initialState : {
