@@ -16,6 +16,7 @@ export const fetchData = createAsyncThunk(
 export const postData = createAsyncThunk(
     'userList/postData',
     async (toPost) => {
+        
         const response = await fetch(`${process.env.REACT_APP_API_URL}/translations`, {
         method: "POST",
         headers: {

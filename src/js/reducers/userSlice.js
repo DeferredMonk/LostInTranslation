@@ -39,14 +39,14 @@ export const patchData = createAsyncThunk("user/patchData", async (toPatch) => {
 export const clearData = createAsyncThunk("user/clearData", async (toPost) => {
   console.log(toPost);
   const response = await fetch(
-    `${process.env.REACT_APP_API_URL}/translations/${toPost}`,
+    `${process.env.REACT_APP_API_URL}/translations/${toPost.id}`,
     {
       method: "PUT",
       headers: {
         "X-API-Key": process.env.REACT_APP_API_KEY,
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ translations: [] }),
+      body: JSON.stringify({ username: toPost.userName, translations: [] }),
     }
   );
   if (response.ok) {

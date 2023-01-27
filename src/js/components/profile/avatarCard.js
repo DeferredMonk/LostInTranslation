@@ -8,7 +8,8 @@ const AvatarCard = () => {
   const { username, translations, id } = useSelector((state) => state.user);
 
   const clearHistory = () => {
-    dispatch(clearData(id));
+    const data = {username: username, id: id}
+    dispatch(clearData(data));
   };
 
   return (

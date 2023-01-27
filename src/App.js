@@ -2,12 +2,11 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import "./sass/app.sass";
 import FrontPageHeader from "./js/components/frontPageHeader.js";
-import TranslatedSign from "./js/components/translations/translatedSign.js";
-import InputForm from "./js/components/translations/inputForm.js";
 import Profile from "./js/components/profile/profile.js";
-import { BrowserRouter, Router, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { fetchData } from "./js/reducers/userListSlice.js";
 import { fetchUser } from "./js/reducers/userSlice";
+import FrontPage from "./js/components/translations/frontPage";
 
 const App = () => {
   const dispatch = useDispatch();
@@ -21,9 +20,15 @@ const App = () => {
   return (
     <BrowserRouter>
       <div className="App">
+        {!window.localStorage.getItem("user") ? <></> : 
+          <nav>Moi</nav>
+        }
+        
         <FrontPageHeader />
-        <InputForm />
-        <Profile />
+        <Routes>
+          <Route path="/profile" element={<Profile />} />
+          <Route path="/" element={<FrontPage />} />
+        </Routes>
       </div>
     </BrowserRouter>
   );
