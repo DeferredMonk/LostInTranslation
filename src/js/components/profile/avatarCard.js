@@ -3,10 +3,18 @@ import { clearData } from "../../reducers/userSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { logout } from "../../reducers/userSlice";
 
+/**
+ * This component render user info to profile component
+ * @returns {JSX.Element}
+ */
+
 const AvatarCard = () => {
   const dispatch = useDispatch();
   const { username, translations, id } = useSelector((state) => state.user);
 
+  /**
+   * This function sends clear command to user reducer
+   */
   const clearHistory = () => {
     const data = {username: username, id: id}
     dispatch(clearData(data));
