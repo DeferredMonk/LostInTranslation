@@ -4,17 +4,26 @@ import { NavLink } from "react-router-dom";
 import logo from "../../Assets/Logo.png";
 import { useSelector } from "react-redux";
 
+/**
+ * Renders navigation bar
+ * if user logged
+ * @returns {JSX-Element}
+ */
 const NavBar = () => {
   const { id } = useSelector((state) => state.user);
   const [logoAnimation, setLogoAnimation] = useState("smallProfileLogo");
   const localStorage = !window.localStorage.getItem("user");
 
   return (
-    <div className={localStorage ? "navBarContainer flex" : "navBarContainer flex visible"}>
+    <div
+      className={
+        localStorage ? "navBarContainer flex" : "navBarContainer flex visible"
+      }
+    >
       <NavLink to={"/"}>
         <h4 className="logoTitle">Lost in translation</h4>
       </NavLink>
-      <NavLink to={"/profile/"+id} className="flex centerItems">
+      <NavLink to={"/profile/" + id} className="flex centerItems">
         <img src={logo} alt="profile logo" className={logoAnimation} />
         <button
           onMouseEnter={() => setLogoAnimation("smallProfileLogo hovering")}
