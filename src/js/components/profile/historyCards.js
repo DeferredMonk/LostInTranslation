@@ -1,10 +1,11 @@
 import "../../../sass/historyCards.sass";
 import logo from "../../../Assets/Logo.png";
 import { useSelector } from "react-redux";
+import { useParams } from "react-router";
 
 const HistoryCards = () => {
-
-  const {username, translations} = useSelector(state => state.user)
+  const { username, translations } = useSelector((state) => state.user);
+  const { id } = useParams();
 
   const filteredTranslations =
     username &&
@@ -12,10 +13,12 @@ const HistoryCards = () => {
       (translation, index) => index >= translations.length - 10
     );
 
+  console.log(id);
+
   return (
     <>
       {username && (
-        <div className="historyCardsContainer flex flexColumn popUp">
+        <div className="popUp historyCardsContainer flex flexColumn ">
           {filteredTranslations.map((translation, index) => {
             return (
               <div
