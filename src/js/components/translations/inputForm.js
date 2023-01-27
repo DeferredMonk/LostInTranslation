@@ -38,9 +38,6 @@ const InputForm = () => {
     dispatch(translate(inputData.translation.replace(/[^a-zA-Z ]/g, "")))
   };
 
-  //Error handlers
-  //if (!isValid) console.log(errors.required);
-
   return (
     <div className="inputForm">
       {window.localStorage.getItem('user') ? (

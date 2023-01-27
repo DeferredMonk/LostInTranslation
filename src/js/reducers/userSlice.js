@@ -16,7 +16,6 @@ export const fetchUser = createAsyncThunk(
 );
 
 export const patchData = createAsyncThunk("user/patchData", async (toPatch) => {
-  console.log(toPatch);
   const response = await fetch(
     `${process.env.REACT_APP_API_URL}/translations/${toPatch.id}`,
     {
@@ -37,7 +36,6 @@ export const patchData = createAsyncThunk("user/patchData", async (toPatch) => {
 });
 
 export const clearData = createAsyncThunk("user/clearData", async (toPost) => {
-  console.log(toPost);
   const response = await fetch(
     `${process.env.REACT_APP_API_URL}/translations/${toPost.id}`,
     {
