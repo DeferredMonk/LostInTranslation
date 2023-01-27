@@ -1,46 +1,67 @@
-import { useEffect, useState } from "react";
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch, useSelector } from "react-redux";
 import { useForm } from "react-hook-form";
 import { postData } from "../../reducers/userListSlice.js";
 import { fetchUser, patchData } from "../../reducers/userSlice.js";
 import "../../../sass/inputForm.sass";
-import { translate, clearTranslation } from "../../reducers/translationSlice"
+import { translate } from "../../reducers/translationSlice";
 
+/**
+ * Renders log in & translate input
+ * @returns {JSX.Element}
+ */
 const InputForm = () => {
-  const {users} = useSelector(state => state.userList)
-  const {username, translations, id} = useSelector(state => state.user)
+  const { users } = useSelector((state) => state.userList);
+  const { translations, id } = useSelector((state) => state.user);
   const {
     register,
     handleSubmit,
-    formState: { errors, isValid },
+    formState: { errors },
     resetField,
   } = useForm({ mode: "onChange" });
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
 
+  /** 
+   * userExists verifies the existanse of a user
+   * @param {Array<String>} existingUsers list of existing users
+   * @param {Object<String>} newUser user to find
+   * @returns {String|null}
+   */
   const userExists = (existingUsers, newUser) =>
     existingUsers.find(
       (user) => user.toLowerCase() === newUser.username.toLowerCase()
     );
-
+  /**
+   * onLogIn logs user in &
+   * creates new user if needed
+   * @param {Object} inputData
+   */
   const onLogIn = async (inputData) => {
-    //Log in handler
     if (!userExists(users, inputData)) {
       const newwUser = { username: inputData.username, translations: [] };
-      await dispatch(postData(newwUser))
+      await dispatch(postData(newwUser));
     }
-    await dispatch(fetchUser(inputData.username))
+    await dispatch(fetchUser(inputData.username));
     resetField("username");
   };
-
+  /**
+   * onTranslate handles user translation input
+   * @param {Object} inputData
+   */
   const onTranslate = (inputData) => {
-    const newList = {id: id, translations: [...translations, inputData.translation.replace(/[^a-zA-Z ]/g, "")]};
+    const newList = {
+      id: id,
+      translations: [
+        ...translations,
+        inputData.translation.replace(/[^a-zA-Z ]/g, ""),
+      ],
+    };
     dispatch(patchData(newList));
-    dispatch(translate(inputData.translation.replace(/[^a-zA-Z ]/g, "")))
+    dispatch(translate(inputData.translation.replace(/[^a-zA-Z ]/g, "")));
   };
 
   return (
     <div className="inputForm">
-      {window.localStorage.getItem('user') ? (
+      {window.localStorage.getItem("user") ? (
         <form className="logged" onSubmit={handleSubmit(onTranslate)}>
           <div
             className={

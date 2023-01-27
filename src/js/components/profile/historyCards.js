@@ -2,10 +2,19 @@ import "../../../sass/historyCards.sass";
 import logo from "../../../Assets/Logo.png";
 import { useSelector } from "react-redux";
 
+
+/**
+ * This component renders user's last ten translations
+ * @returns {JSX element}
+ */
+
 const HistoryCards = () => {
 
   const {username, translations} = useSelector(state => state.user)
 
+  /**
+   * This function returns user's last ten translations from user reducer 
+   */
   const filteredTranslations =
     username &&
     translations.filter(

@@ -1,5 +1,9 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 
+/**
+ * Get logged user's info from API
+ * @returns {Object} username: String, translations: Array<String>, id: Number
+ */
 export const fetchUser = createAsyncThunk(
   "user/fetchUser",
   async (userName) => {
@@ -15,6 +19,10 @@ export const fetchUser = createAsyncThunk(
   }
 );
 
+/**
+ * Adds new translation into logged user's translations list in API
+ * @returns {Array<String>}
+ */
 export const patchData = createAsyncThunk("user/patchData", async (toPatch) => {
   const response = await fetch(
     `${process.env.REACT_APP_API_URL}/translations/${toPatch.id}`,
@@ -35,6 +43,10 @@ export const patchData = createAsyncThunk("user/patchData", async (toPatch) => {
   return new Promise.reject();
 });
 
+/**
+ * Clears logged user's tranlation-list in API
+ * @returns {Array}
+ */
 export const clearData = createAsyncThunk("user/clearData", async (toPost) => {
   const response = await fetch(
     `${process.env.REACT_APP_API_URL}/translations/${toPost.id}`,
@@ -55,6 +67,10 @@ export const clearData = createAsyncThunk("user/clearData", async (toPost) => {
   return new Promise.reject();
 });
 
+/**
+ * This function creates user reducer and actions for it.
+ * @returns {Object} username: String, Translations: Array<String>, id: Number | null
+ */
 export const userSlice = createSlice({
   name: "user",
   initialState: {
