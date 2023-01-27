@@ -46,7 +46,7 @@ export const clearData = createAsyncThunk("user/clearData", async (toPost) => {
         "X-API-Key": process.env.REACT_APP_API_KEY,
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ username: toPost.userName, translations: [] }),
+      body: JSON.stringify({ username: toPost.username, translations: [] }),
     }
   );
   if (response.ok) {
@@ -71,6 +71,7 @@ export const userSlice = createSlice({
       state.translations = [];
       state.id = null;
       window.localStorage.setItem("user", "");
+      window.location.href = "/"
     },
   },
   extraReducers: {
@@ -79,6 +80,7 @@ export const userSlice = createSlice({
       state.translations = action.payload.result.translations;
       state.id = action.payload.result.id;
       window.localStorage.setItem("user", action.payload.result.username);
+      
     },
     [fetchUser.rejected]: (state, action) => {
       state.error = action.error;

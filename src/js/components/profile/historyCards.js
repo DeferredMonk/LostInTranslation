@@ -15,7 +15,7 @@ const HistoryCards = () => {
   return (
     <>
       {username && (
-        <div className="popUp historyCardsContainer flex flexColumn ">
+        <div className="historyCardsContainer flex flexColumn popUp">
           {filteredTranslations.map((translation, index) => {
             return (
               <div

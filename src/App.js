@@ -7,12 +7,14 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { fetchData } from "./js/reducers/userListSlice.js";
 import { fetchUser } from "./js/reducers/userSlice";
 import FrontPage from "./js/components/translations/frontPage";
+import NavBar from "./js/components/NavBar";
 
 const App = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(fetchData());
+    
     if (window.localStorage.getItem("user"))
       dispatch(fetchUser(window.localStorage.getItem("user")));
   }, []);
@@ -20,13 +22,10 @@ const App = () => {
   return (
     <BrowserRouter>
       <div className="App">
-        {!window.localStorage.getItem("user") ? <></> : 
-          <nav>Moi</nav>
-        }
-        
+        <NavBar />
         <FrontPageHeader />
         <Routes>
-          <Route path="/profile" element={<Profile />} />
+          <Route path="/profile/:id" element={<Profile />} />
           <Route path="/" element={<FrontPage />} />
         </Routes>
       </div>
