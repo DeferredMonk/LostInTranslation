@@ -5,7 +5,7 @@ import { useSelector } from "react-redux";
 /**
  * Renders front page background
  * if user not logged
- * @returns {JSX-Element}
+ * @returns {JSX.Element}
  */
 const FrontPageHeader = () => {
   const { username } = useSelector((state) => state.user);

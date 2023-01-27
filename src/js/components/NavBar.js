@@ -7,7 +7,7 @@ import { useSelector } from "react-redux";
 /**
  * Renders navigation bar
  * if user logged
- * @returns {JSX-Element}
+ * @returns {JSX.Element}
  */
 const NavBar = () => {
   const { id } = useSelector((state) => state.user);

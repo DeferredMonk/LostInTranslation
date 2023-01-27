@@ -7,7 +7,7 @@ import { translate } from "../../reducers/translationSlice";
 
 /**
  * Renders log in & translate input
- * @returns {JSX-Element}
+ * @returns {JSX.Element}
  */
 const InputForm = () => {
   const { users } = useSelector((state) => state.userList);
@@ -20,7 +20,8 @@ const InputForm = () => {
   } = useForm({ mode: "onChange" });
   const dispatch = useDispatch();
 
-  /**   * userExists verifies the existanse of a user
+  /** 
+   * userExists verifies the existanse of a user
    * @param {Array<String>} existingUsers list of existing users
    * @param {Object<String>} newUser user to find
    * @returns {String|null}

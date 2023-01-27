@@ -5,15 +5,16 @@ import TranslatedSign from "./translatedSign.js";
 /**
  * Renders inputForm element &
  * If user logged renders translatedSign component
- * @returns {JSX-Element}
+ * @returns {JSX.Element}
  */
 const FrontPage = () => {
-  const {id} = useSelector((state) => state.user)
+  //This is a quickfix to rerender page
+  const { id } = useSelector((state) => state.user);
 
   return (
     <div className="profile">
       <InputForm />
-      {window.localStorage.getItem('user') && <TranslatedSign />}
+      {window.localStorage.getItem("user") && <TranslatedSign />}
     </div>
   );
 };
