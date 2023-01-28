@@ -2,6 +2,7 @@ import "../../../sass/avatar.sass";
 import { clearData } from "../../reducers/userSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { logout } from "../../reducers/userSlice";
+import { useNavigate } from "react-router-dom";
 
 /**
  * This component render user info to profile component
@@ -11,6 +12,7 @@ import { logout } from "../../reducers/userSlice";
 const AvatarCard = () => {
   const dispatch = useDispatch();
   const { username, translations, id } = useSelector((state) => state.user);
+  const navigate = useNavigate()
 
   /**
    * This function sends clear command to user reducer
@@ -19,6 +21,14 @@ const AvatarCard = () => {
     const data = { username: username, id: id };
     dispatch(clearData(data));
   };
+  /**
+   * logoutHandler first logs out the user
+   * if logout succesfull navigates back home
+   */
+  const logoutHandler = () => {
+    dispatch(logout());
+    !window.localStorage.getItem("user") && navigate("/")
+  }
 
   return (
     <div className="avatarCard">
@@ -44,7 +54,7 @@ const AvatarCard = () => {
         >
           Clear Translations
         </button>
-        <button className="logoutButton" onClick={() => dispatch(logout())}>
+        <button className="logoutButton" onClick={logoutHandler}>
           Logout
         </button>
       </div>
