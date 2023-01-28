@@ -1,5 +1,4 @@
 import { useDispatch, useSelector } from "react-redux";
-import { useForm } from "react-hook-form";
 import { postData } from "../../reducers/userListSlice.js";
 import { fetchUser, patchData } from "../../reducers/userSlice.js";
 import "../../../sass/inputForm.sass";
@@ -9,7 +8,7 @@ import { translate } from "../../reducers/translationSlice";
  * Renders log in & translate input
  * @returns {JSX.Element}
  */
-const InputForm = () => {
+const InputForm = ({useForm}) => {
   const { users } = useSelector((state) => state.userList);
   const { translations, id } = useSelector((state) => state.user);
   const {
@@ -17,7 +16,7 @@ const InputForm = () => {
     handleSubmit,
     formState: { errors },
     resetField,
-  } = useForm({ mode: "onChange" });
+  } = useForm
   const dispatch = useDispatch();
 
   /** 
@@ -73,6 +72,7 @@ const InputForm = () => {
               placeholder="Translate..."
               {...register("translation", {
                 required: "What would you like to translate?",
+                maxLength: {value:40, message:"Your translation exceeds the limit of characters (40)"}
               })}
             />
             <button type="submit" className="translateButton">

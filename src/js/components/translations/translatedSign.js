@@ -6,9 +6,10 @@ import "../../../sass/translatedSign.sass";
  * Renders a card with translation of user input
  * @returns {JSX.Element}
  */
-const TranslatedSign = () => {
+const TranslatedSign = ({useForm}) => {
   const { translation } = useSelector((state) => state.translation);
   const translationCharts = translation.split("");
+  const {resetField} = useForm
   const dispatch = useDispatch();
   /**
    * Based on user input return an image or
@@ -35,7 +36,8 @@ const TranslatedSign = () => {
       <button
         className="clearButton"
         onClick={() => {
-          dispatch(clearTranslation());
+          dispatch(clearTranslation())
+          resetField('translation');
         }}
       >
         Clear
