@@ -12,7 +12,7 @@ export const fetchUser = createAsyncThunk(
     );
     if (response.ok) {
       const jsonObject = await response.json();
-      const result = jsonObject.find((user) => user.username === userName);
+      const result = jsonObject.find((user) => user.username.toLowerCase() === userName.toLowerCase());
       return { result };
     }
     return new Promise.reject();
@@ -93,7 +93,6 @@ export const userSlice = createSlice({
       state.translations = action.payload.result.translations;
       state.id = action.payload.result.id;
       window.localStorage.setItem("user", action.payload.result.username);
-      
     },
     [fetchUser.rejected]: (state, action) => {
       state.error = action.error;
