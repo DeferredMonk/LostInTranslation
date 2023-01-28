@@ -85,7 +85,6 @@ export const userSlice = createSlice({
       state.translations = [];
       state.id = null;
       window.localStorage.setItem("user", "");
-      window.location.href = "/"
     },
   },
   extraReducers: {
