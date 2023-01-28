@@ -4,21 +4,24 @@
     display: flex
     align-items: center
     width: 100%
-    flex-direction: column
-    margin: 10vh 0px
+    flex-direction: column 
 
 .clearTranslationsButton
-    width: 100%
-    border-radius: 30px
-    border-top-left-radius: 0
-    border-bottom-left-radius: 0
-    border-bottom-right-radius: 0
+    width: 100%    
     opacity: 0.7
-
+    white-space: pre-wrap
+    @include small-up 
+    @include small-down
+        border-radius: 0 0 0px 15px
     @include medium-only
         font-size: 20px
         height: 100%
-        margin-bottom: 2px
+        margin-bottom: 1px
+        border-radius: 0 30px 0px 0
+    
+    @include large
+        border-radius: 0 30px 0px 0
+        
     
 .clearTranslationsButton:hover
     box-shadow: 0px 0px 9px 0px rgba(0,0,0,0.75)
@@ -26,15 +29,20 @@
 .logoutButton
     width: 100%
     border-radius: 30px
-    border-top-left-radius: 0
-    border-top-right-radius: 0
-    border-bottom-left-radius: 0
     opacity: 0.7
+    @include small-up 
+    @include small-down
+        border-radius: 0 0 15px 0px
 
     @include medium-only
         font-size: 20px
         height: 100%
-        margin-top: 2px
+        margin-top: 1px
+        border-radius: 0 0 30px 0px
+    
+
+    @include large
+        border-radius: 0 0 30px 0px
         
 .logoutButton:hover
     box-shadow: 0px 0px 9px 0px rgba(0,0,0,0.75)
