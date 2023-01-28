@@ -20,7 +20,7 @@ const NavBar = () => {
         localStorage ? "navBarContainer flex" : "navBarContainer flex visible"
       }
     >
-      <NavLink to={"/"}>
+      <NavLink to={"/"} className="navLink">
         <h4 className="logoTitle">Lost in translation</h4>
       </NavLink>
       <NavLink to={"/profile/" + id} className="flex centerItems">
