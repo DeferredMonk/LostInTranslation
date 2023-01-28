@@ -4,10 +4,12 @@ $shadow: 0px 0px 10px 3px #ffffff
 
 .avatarCard
     display: flex
-
+    margin-top: 15vh
+    z-index: 1
+    @include small-down
+        flex-direction: column
 .profileContainer
     display: flex
-    width: 600px
     height: 140px
     padding-top: 15px
     padding-left: 20px
@@ -17,10 +19,16 @@ $shadow: 0px 0px 10px 3px #ffffff
     border-radius: 30px
     border-top-right-radius: 0
     border-bottom-right-radius: 0
-
     @include medium-only
         width: 400px
-    
+    @include small-down
+        padding: 15px
+        flex-direction: column
+        height: fit-content
+        border-radius: 15px 15px 0 0
+    @include large
+        width: 600px
+
 .circleBase 
     border-radius: 50%
 
@@ -28,7 +36,6 @@ $shadow: 0px 0px 10px 3px #ffffff
     width: 80px
     height: 80px
     background: #480348
-    opacity: 0.7
     margin-top: 20px
     border: 1px solid #000
     color: white
@@ -37,22 +44,33 @@ $shadow: 0px 0px 10px 3px #ffffff
     align-items: center
     justify-content: center
     display: flex
+    @include small-down
+        align-self: center
 
 .userInfoContainer
     display: flex
     flex-direction: column
     padding-left: 30px
     color: white
+    @include small-down
+        padding: 20px
 
 .userProfileName
-    height: 60px
+    max-height: 60px
     color: white
     font-family: 'Love Ya Like A Sister', cursive
     font-size: 50px
+    @include small-down
+        text-align: center
+        font-size: 25px
+
     
 .infoText
     font-family: 'Love Ya Like A Sister', cursive
     font-size: 20px
+    @include small-down
+        margin-top: 10px
+        font-size: 10px
 
 .buttonContainer
     display: flex
@@ -62,6 +80,11 @@ $shadow: 0px 0px 10px 3px #ffffff
     border-top-right-radius: 30px
     border-bottom-right-radius: 30px
     padding-left: 5px
-    max-height: 155px
+    @include small-down
+        flex-direction: row
+        height: fit-content
+        padding: 0
+
+
     
     

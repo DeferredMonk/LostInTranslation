@@ -16,7 +16,7 @@ const AvatarCard = () => {
    * This function sends clear command to user reducer
    */
   const clearHistory = () => {
-    const data = {username: username, id: id}
+    const data = { username: username, id: id };
     dispatch(clearData(data));
   };
 
@@ -30,7 +30,10 @@ const AvatarCard = () => {
           <span className="infoText">Username:</span>
           <span className="userProfileName">{username && username}</span>
           <span className="infoText">
-            Translations count: {username && translations.length}
+            Translations count:{" "}
+            <span className="userProfileName">
+              {username && translations.length}
+            </span>
           </span>
         </div>
       </div>
